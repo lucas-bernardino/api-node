@@ -6,3 +6,8 @@ yarn add -D typescript @types/express ts-node-dev
 Esse @types/express foi preciso devido ao typescript e o ts-node-dev serve para 
 o node executar arquivos typescript. Lembrando que não é recomendável utilizá-lo em 
 produção, somente em desenvolvimento.
+
+Adicionamos também a biblioteca dotenv para manipular variáveis de ambiente
+
+Rodamos yarn tsc --init
+Esse código inicia o tsconfig.json e ao rodar yarn tsc, todos os arquivos typescript sao convertidos para javascript de modo que o node consiga executar os arquivos em forma de javascript. Importante colocar o /build gitignore
