@@ -9,6 +9,6 @@ router.get('/', (_, res) => {
 
 // bodyValidator é um middleware responsável por validar os dados enviados no /teste.
 // Apos a validação, ele chama o create
-router.post('/cidades', CidadesController.createBodyValidation, CidadesController.createFilterValidation, CidadesController.create)
+router.post('/cidades', CidadesController.createValidation, CidadesController.create)
 
 export { router };
