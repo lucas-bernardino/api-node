@@ -1,16 +1,14 @@
 import { Router } from 'express';
-import { StatusCodes } from 'http-status-codes';
+import { CidadesController } from './../controllers/index';
 
 const router = Router();
 
 router.get('/', (_, res) => {
-  return res.send('Retornando GET');
+  return res.send('RETORNO INICIAL');
 })
 
-router.post('/teste', (req, res) => {
-  console.log(req.body);
-  return res.status(StatusCodes.OK).json(req.body);
-})
-
+// bodyValidator é um middleware responsável por validar os dados enviados no /teste.
+// Apos a validação, ele chama o create
+router.post('/cidades', CidadesController.createBodyValidation, CidadesController.createFilterValidation, CidadesController.create)
 
 export { router };

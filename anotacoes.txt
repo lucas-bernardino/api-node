@@ -11,3 +11,12 @@ Adicionamos também a biblioteca dotenv para manipular variáveis de ambiente
 
 Rodamos yarn tsc --init
 Esse código inicia o tsconfig.json e ao rodar yarn tsc, todos os arquivos typescript sao convertidos para javascript de modo que o node consiga executar os arquivos em forma de javascript. Importante colocar o /build gitignore
+
+O tipo Record, no typescript, permite que voce inicialize um dicionario em que voce 
+não sabe quantos keys e values ele terá. 
+Sintaxe: const myObj: Record<string, string> = {}
+
+Os middlewares são funções que auxiliam os controllers. Eles funcionam como intermediario entre o recebimento da API 
+e o método da controller. Por exemplo, uma função que é responsável por validar os dados (como utilizando o YUP) pode 
+ser usada como um middleware. Elas também tem acesso ao req, res e se não forem a ultima função no ciclo, precisam 
+chamar o next() para chamar a próxima função de middleware.
