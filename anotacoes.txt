@@ -20,3 +20,17 @@ Os middlewares são funções que auxiliam os controllers. Eles funcionam como i
 e o método da controller. Por exemplo, uma função que é responsável por validar os dados (como utilizando o YUP) pode 
 ser usada como um middleware. Elas também tem acesso ao req, res e se não forem a ultima função no ciclo, precisam 
 chamar o next() para chamar a próxima função de middleware.
+
+O comando:
+yarn add jest ts-jest @types/jest 
+esse comando instala o jest e depois roda yarn jest --init 
+
+Apos inicializar o jest, foi modificado alguns parametros no arquivo jest.config.ts, como o 
+coverageReporters, setupFilesAfterEnv, testMatch, transform
+
+Foi criado o arquivo de tests jest.setup.ts dentro da pasta tests. Para automatizar a incialização do 
+servidor, foi instalada a biblioteca supertest, que importa o Server e inicia os testes
+
+Estava dando um conflito no tsconfig.json. Para resolver, precisou incluir o parametro "exclude"
+
+
