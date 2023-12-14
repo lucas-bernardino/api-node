@@ -2,12 +2,15 @@ import { Request, Response } from "express";
 import * as yup from "yup";
 import { validation } from "../../shared/middlewares/Validation";
 import { StatusCodes } from "http-status-codes";
+import { ICidade } from "../../database/models";
+import { CidadesProvider } from "../../database/providers/cidades";
 
 const cidadeSchema = yup.object({
-  nome: yup.string().required().min(3),
+  nome: yup.string().required().min(3).max(100),
 });
 
-interface ICidade extends yup.InferType<typeof cidadeSchema> {
+// Omitindo o id do ICidade pois no models ele é obrigatório mas no post do create não
+interface IBodyProps extends yup.InferType<typeof cidadeSchema>, Omit<ICidade, 'id'> {
   nome: string;
 }
 
@@ -16,8 +19,11 @@ export const createValidation = validation({
 });
 
 export const create = async (req: Request<{}, {}, ICidade>, res: Response) => {
-  console.log(req.body);
+  const result = await CidadesProvider.create(req.body)
+  
+  if (result instanceof Error) {
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({error: result.message});
+  }
 
-
-  return res.status(StatusCodes.CREATED).json(22);
+  return res.status(StatusCodes.CREATED).json(result);
 };

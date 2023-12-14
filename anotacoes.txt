@@ -42,3 +42,14 @@ tambem adicionamos o "engines" com o node na versao 20.x
 
 No banco de dados, vamos usar o knex. No modo desenvolvimento, utilizamos o sqlite para um esboco de como 
 será. Porém, em producao nao se usa ele. Fizemos as configuracoes inicias do knex na pasta database
+
+Fizemos algumas alteracoes no package.json que automatiza os scripts para rodar as migrations
+
+
+As providers são responsáveis por criar registros no banco, atualizar, consultar etc. Parecido com o que
+as controllers já fazem. Porém, as providers escrevem diretamente no banco de dados. Além disso,
+caso queira mudar o banco de dados usado, é só mudar e implementar a nova lógica na pasta providers.
+
+As funções das providers são async e retornam uma Promise, já que interagem com o bando de dados e 
+podem levar tempo para completar ação, fazendo com que o código possa esperar o resultado da ação sem bloquear
+a thread principal.

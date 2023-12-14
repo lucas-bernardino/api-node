@@ -4,6 +4,7 @@ import { validation } from "../../shared/middlewares/Validation";
 
 import { ParamsDictionary } from "express-serve-static-core";
 import { StatusCodes } from "http-status-codes";
+import { ICidade } from "../../database/models";
 
 const paramsPropsSchema = yup.object({
   id: yup.string().required()
@@ -13,7 +14,7 @@ const bodyPropsSchema = yup.object({
   nome: yup.string().required().min(3)
 });
 
-interface IParamProps extends yup.InferType<typeof paramsPropsSchema>, ParamsDictionary {
+interface IParamProps extends yup.InferType<typeof paramsPropsSchema>, ParamsDictionary, Omit<ICidade, 'id'> {
   id: string,
 }
 
