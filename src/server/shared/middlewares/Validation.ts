@@ -16,10 +16,10 @@ export const validation = (schemas: Partial<TAllSchemas>) => {
           if (schemasKeys === 'params') {
             const checkNumber: number = Number (Object.values(req[schemasKeys as TField])[0] as any )
             if (isNaN(checkNumber)) {
-              allErrors[schemasKeys as TField] = { [schemasKeys]: `id must be a number type, but the final value was: NaN (cast from the value ${Object.values(req[schemasKeys as TField])[0]} )`};
+              allErrors[schemasKeys as TField] = { id: `id must be a number type, but the final value was: NaN (cast from the value ${Object.values(req[schemasKeys as TField])[0]} )`};
             }
             else if (checkNumber <= 0) {
-              allErrors[schemasKeys as TField] = { [schemasKeys]: 'id must be greater than 0'};
+              allErrors[schemasKeys as TField] = { id: 'id must be greater than 0'};
             }
           }
 

@@ -3,6 +3,7 @@ import * as yup from "yup";
 import { validation } from "../../shared/middlewares/Validation";
 
 import { ParamsDictionary } from "express-serve-static-core";
+import { StatusCodes } from "http-status-codes";
 
 const paramsPropsSchema = yup.object({
   id: yup.string().required()
@@ -29,6 +30,6 @@ export const updateById = async (req: Request<IParamProps, {}, IBodyProps>, res:
   console.log(req.params);
   console.log(req.body);
 
-  return res.send("updateById!");
+  return res.status(StatusCodes.OK).send("updateById!");
 };
 
