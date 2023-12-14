@@ -34,3 +34,9 @@ servidor, foi instalada a biblioteca supertest, que importa o Server e inicia os
 Estava dando um conflito no tsconfig.json. Para resolver, precisou incluir o parametro "exclude"
 
 
+
+Para fazer a configuração do deploy, adicionamos o "postinstall": "tsc" e
+"production": "node ./build/index.js" para eles instalar as dependencias e dar o build quando for pro deploy
+tambem adicionamos o "engines" com o node na versao 20.x 
+
+
