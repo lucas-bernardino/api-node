@@ -40,3 +40,5 @@ Para fazer a configuração do deploy, adicionamos o "postinstall": "tsc" e
 tambem adicionamos o "engines" com o node na versao 20.x 
 
 
+No banco de dados, vamos usar o knex. No modo desenvolvimento, utilizamos o sqlite para um esboco de como 
+será. Porém, em producao nao se usa ele. Fizemos as configuracoes inicias do knex na pasta database
