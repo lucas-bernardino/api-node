@@ -4,6 +4,7 @@ import { validation } from "../../shared/middlewares/Validation";
 
 import { ParamsDictionary } from "express-serve-static-core";
 import { StatusCodes } from "http-status-codes";
+import { CidadesProvider } from "../../database/providers/cidades";
 
 const paramsPropsSchema = yup.object({
   id: yup.string().required()
@@ -18,7 +19,11 @@ export const deleteByIdValidation = validation({
 });
 
 export const deleteById = async (req: Request<IParamProps>, res: Response) => {
-  console.log(req.params);
+  const result = await CidadesProvider.deleteById(Number(req.params.id))
+
+  if (result instanceof Error) {
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({error: result.message});
+  }
 
   return res.status(StatusCodes.OK).send();
 };

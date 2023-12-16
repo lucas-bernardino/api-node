@@ -4,6 +4,7 @@ import { validation } from "../../shared/middlewares/Validation";
 
 import { ParamsDictionary } from "express-serve-static-core";
 import { StatusCodes } from "http-status-codes";
+import { CidadesProvider } from "../../database/providers/cidades";
 
 const paramsPropsSchema = yup.object({
   id: yup.string().required()
@@ -18,11 +19,15 @@ export const getByIdValidation = validation({
 });
 
 export const getById = async (req: Request<IParamProps>, res: Response) => {
-  console.log(req.params);
+  
+  const result = await CidadesProvider.getById(Number(req.params.id))
 
-  return res.status(StatusCodes.OK).json({
-    id: req.params.id,
-    nome: 'joinville'
-  })
+
+  if (result instanceof Error) {
+    return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({error: result.message})
+  }
+
+  return res.status(StatusCodes.OK).json(result)
+
 };
 
