@@ -53,3 +53,8 @@ caso queira mudar o banco de dados usado, é só mudar e implementar a nova lóg
 As funções das providers são async e retornam uma Promise, já que interagem com o bando de dados e 
 podem levar tempo para completar ação, fazendo com que o código possa esperar o resultado da ação sem bloquear
 a thread principal.
+
+
+
+O deploy no render integrado ao sqlite funcionou após fazer colocar o sqlite (no package.json) como 
+dependencias de produção ao invés de dependencias de desenvolvimento.

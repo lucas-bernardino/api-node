@@ -9,12 +9,14 @@ const startServer = () => {
 }
 
 
-// Se estiver em modo de produção, roda a migration somente quando dá o deploy
-// Se estiver rodando no localhost, não precisa dar dando migration cada vez
+// Se estiver em modo de produção, roda a migration/seed somente quando dá o deploy
+// Se estiver rodando no localhost, não precisa dar dando migration/seed cada vez
 if (process.env.IS_LOCALHOST !== 'true') {
   Knex.migrate.latest()
     .then(() => {
-      startServer()
+      Knex.seed.run().then(() => {
+        startServer()
+      }).catch((err) => console.log(err))
     })
     .catch((err) => {console.log(err)})
 } else {

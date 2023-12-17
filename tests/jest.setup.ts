@@ -5,6 +5,7 @@ import { Knex } from '../src/server/database/knex';
 
 beforeAll(async () => {
     await Knex.migrate.latest()
+    await Knex.seed.run()
 }); // precisa fazer isso para o banco de dados migrar (tipo iniciar) as tabelas antes de começar os testes
 
 afterAll(async() => {
