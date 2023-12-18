@@ -58,3 +58,9 @@ a thread principal.
 
 O deploy no render integrado ao sqlite funcionou após fazer colocar o sqlite (no package.json) como 
 dependencias de produção ao invés de dependencias de desenvolvimento.
+
+
+
+Quando criamos a parte do usuario, especialmente na parte do signIn, temos que mandar os dados, como email e senha, no 
+body da chamada, pois todo site que possui SSL há a criptografia desses dados, de modo que eles são protegidos na conexão
+entre cliente e servidor.

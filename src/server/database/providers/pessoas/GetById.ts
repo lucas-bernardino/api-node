@@ -10,7 +10,6 @@ export const getById = async (id: number): Promise< IPessoa | Error> => {
         const result: any = await Knex(ETableNames.pessoa).where('id', id)
         
         if (typeof result === 'object' && result.length > 0) {
-            console.log('L13', result[0])
             return result[0]
         }
 
