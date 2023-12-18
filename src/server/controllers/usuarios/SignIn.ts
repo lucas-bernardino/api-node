@@ -4,6 +4,7 @@ import { IUsuario } from "../../database/models";
 import { UsuariosProvider } from '../../database/providers/usuarios'
 import { StatusCodes } from "http-status-codes";
 import { validation } from "../../shared/middlewares/Validation";
+import { PasswordCrypto } from "../../shared/services";
 
 const usuarioSchema = yup.object({
     email: yup.string().email().required().min(7).max(100),
@@ -21,13 +22,21 @@ export const signInValidation = validation ({
 
 export const signIn = async (req: Request<{}, {}, IBodyProps>, res: Response) => {
 
+
+
+
     const { email, senha } = req.body;
 
 
-    const result = await UsuariosProvider.getByEmail(email)
+    const user = await UsuariosProvider.getByEmail(email)
 
+    if (user instanceof Error) {
+        return res.status(StatusCodes.UNAUTHORIZED).json({error: 'Email ou senha invalidos'})
+    }
+
+    const checkPassword = await PasswordCrypto.verifyPassword(senha, user.senha)
     // se o email não existir no DB ou se a senha for diferente dessa conta
-    if (result instanceof Error || senha !== result.senha) {
+    if (!checkPassword) {
         return res.status(StatusCodes.UNAUTHORIZED).json({error: 'Email ou senha invalidos'})
     }
 

@@ -64,3 +64,10 @@ dependencias de produção ao invés de dependencias de desenvolvimento.
 Quando criamos a parte do usuario, especialmente na parte do signIn, temos que mandar os dados, como email e senha, no 
 body da chamada, pois todo site que possui SSL há a criptografia desses dados, de modo que eles são protegidos na conexão
 entre cliente e servidor.
+
+
+Criptografia: instalamos o package bcryptjs. Lembrar de instalar os @types sempre 
+como dependencias de desenvolvimento usando a flag -D.
+Criptografar uma senha com o bcryptjs é muito simples. Basta usar a função hash e passar
+como parametros a string que quer criptografar e o salt, que é um parametro para melhorar 
+a criptografia
