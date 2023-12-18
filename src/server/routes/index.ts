@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { CidadesController } from './../controllers/index';
+import { CidadesController, PessoasController } from './../controllers/index';
 
 const router = Router();
 
@@ -22,14 +22,14 @@ router.delete('/cidades/:id', CidadesController.deleteByIdValidation, CidadesCon
 
 
 
-router.get('/pessoas')
+router.get('/pessoas', PessoasController.getAllValidation, PessoasController.getAll);
 
-router.get('/pessoas/:id')
+router.get('/pessoas/:id', PessoasController.getByIdValidation, PessoasController.getById);
 
-router.put('/pessoas/:id')
+router.put('/pessoas/:id', PessoasController.updateByIdValidation, PessoasController.updateById);
 
-router.post('/pessoas')
+router.post('/pessoas', PessoasController.createValidation, PessoasController.create);
 
-router.delete('/pessoas/:id')
+router.delete('/pessoas/:id', PessoasController.deleteByIdValidation, PessoasController.deleteById);
 
 export { router };
