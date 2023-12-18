@@ -20,4 +20,16 @@ router.post('/cidades', CidadesController.createValidation, CidadesController.cr
 router.delete('/cidades/:id', CidadesController.deleteByIdValidation, CidadesController.deleteById);
 
 
+
+
+router.get('/pessoas')
+
+router.get('/pessoas/:id')
+
+router.put('/pessoas/:id')
+
+router.post('/pessoas')
+
+router.delete('/pessoas/:id')
+
 export { router };
