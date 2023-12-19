@@ -4,7 +4,7 @@ import { IUsuario } from "../../database/models";
 import { UsuariosProvider } from '../../database/providers/usuarios'
 import { StatusCodes } from "http-status-codes";
 import { validation } from "../../shared/middlewares/Validation";
-import { PasswordCrypto } from "../../shared/services";
+import { JWTService, PasswordCrypto } from "../../shared/services";
 
 const usuarioSchema = yup.object({
     email: yup.string().email().required().min(7).max(100),
@@ -40,5 +40,12 @@ export const signIn = async (req: Request<{}, {}, IBodyProps>, res: Response) =>
         return res.status(StatusCodes.UNAUTHORIZED).json({error: 'Email ou senha invalidos'})
     }
 
-    return res.status(StatusCodes.OK).json( { accessToken: 'teste.teste.teste' } )
+    // será gerado um token JWT com o ID de cada usuario
+    const accessToken = JWTService.sign({uid: user.id}) 
+
+    if (accessToken === 'JWT_SECRET NAO ENCONTRADO') {
+        return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({error: 'Ocorreu um erro ao gerar o token de acesso'})
+    }
+
+    return res.status(StatusCodes.OK).json( { accessToken: accessToken } )
 }

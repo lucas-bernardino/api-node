@@ -71,3 +71,14 @@ como dependencias de desenvolvimento usando a flag -D.
 Criptografar uma senha com o bcryptjs é muito simples. Basta usar a função hash e passar
 como parametros a string que quer criptografar e o salt, que é um parametro para melhorar 
 a criptografia
+
+
+Até agora, as rotas que eram para estar privadas, como as rotas de obter/inserir cidades e pessoas, estão publicas.
+Assim, qualquer pessoa pode fazer uma requisicao para essas rotas. Entao, é preciso fazer uma autenticação, utilizando tokens.
+Essa autenticação será um middleware para o router. A autenticação ser dará através do req.headers
+Para gerar o token, utilizaremos o package jsonwebtoken.
+O JWT nao tem dados criptografados. Ele só contem uma HASH (tipo uma assinatura secreta), e utiliza essa HASH 
+para verificar e gerar o JWT. Por isso nao se coloca senhas no JWT, pois ele nao tem criptografia.
+Esse hash n deve ser compartilhado com ninguem, pois é possivel criar o mesmo token se possuir o dado e essa hash.
+    é possivel ir no jwt.io e colar o JWT que ele vai mostrar os dados ali dentro. Ou seja, ele não é criptografado. Porem,
+    existe o HASH que é uma forma secreta de 'esconder' como que esse JWT é criado atraves da palavra secreta.
