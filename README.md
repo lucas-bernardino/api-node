@@ -35,7 +35,7 @@ yarn start
 yarn knex:migrate
 ```
 
-2. É possível utilizar seeds para preencher o banco de dados das cidades com todas as cidades de joinville:
+2. É possível utilizar seeds para preencher o banco de dados das cidades com todas as cidades de Santa Catarina:
 ```
 yarn knex:seeds
 ```
